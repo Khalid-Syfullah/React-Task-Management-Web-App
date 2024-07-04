@@ -6,7 +6,7 @@ import './styles.css';
 import { API_URL } from '../config';
 
 const TaskList = () => {
-  
+
   const [tasks, setTasks] = useState([]); // State to store the list of tasks fetched from the server
   const [isAddingTask, setIsAddingTask] = useState(false); // State to manage the visibility of the add/edit task dialog
   const [isEditing, setIsEditing] = useState(false); // State to track if the user is currently editing a task
@@ -37,13 +37,14 @@ const TaskList = () => {
       });
   };
 
+  // Add a new task to the server
   const addTask = (task) => {
-    setIsAddTaskDisabled(true); // Disable Add Task button during API call
+    setIsAddTaskDisabled(true);  // Disable Add Task button during API call
     setIsLoading(true); // Set loading state to true
     axios.post(API_URL + '/tasks', task)
       .then(response => {
         setTasks([...tasks, response.data]);
-        setIsAddingTask(false); // Close dialog after adding task
+        setIsAddingTask(false);
         setServerMessage({ status: 'success', message: 'Task added successfully.' });
         setTimeout(() => {
           setServerMessage(null);
@@ -52,7 +53,7 @@ const TaskList = () => {
       .catch(error => {
         console.error(error);
         setIsAddingTask(false);
-        setServerMessage({ status: 'error', message: 'Failed to add task.' });
+        setServerMessage({ status: 'error', message: error.response.data.error || 'Failed to add task.' });
         setTimeout(() => {
           setServerMessage(null);
         }, 3000);
@@ -63,7 +64,8 @@ const TaskList = () => {
       });
   };
 
-  const updateTask = (task) => {
+   // Update an existing task on the server
+   const updateTask = (task) => {
     setIsAddTaskDisabled(true); // Disable Add Task button during API call
     setIsLoading(true); // Set loading state to true
     axios.put(API_URL + `/tasks/${task._id}`, task)
@@ -81,7 +83,7 @@ const TaskList = () => {
       .catch(error => {
         console.error(error);
         setIsAddingTask(false);
-        setServerMessage({ status: 'error', message: 'Failed to update task.' });
+        setServerMessage({ status: 'error', message: error.response.data.error || 'Failed to update task.' });
         setTimeout(() => {
           setServerMessage(null);
         }, 3000);
@@ -92,8 +94,9 @@ const TaskList = () => {
       });
   };
 
+  // Delete a task from the server
   const deleteTask = (id) => {
-    setIsAddTaskDisabled(true);
+    setIsAddTaskDisabled(true); 
     setIsLoading(true); // Set loading state to true
     axios.delete(API_URL + `/tasks/${id}`)
       .then(() => {
@@ -116,11 +119,12 @@ const TaskList = () => {
       });
   };
 
+
+
   const editTask = (task) => {
     setIsEditing(true);
     setIsAddingTask(true);
     setCurrentTask(task);
-    console.log("Editing task:", task);
   };
 
   const toggleAddTask = () => {

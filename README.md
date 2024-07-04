@@ -16,6 +16,7 @@
     <li><a href="#screenshots">Screenshots</a></li>
     <li><a href="#react-front-end-installation">Front-end Installation</a></li>
     <li><a href="#nodejs-back-end-installation">Back-end Installation</a></li>
+    <li><a href="#api-endpoints">API Endpoints</a></li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
@@ -108,6 +109,43 @@ Screenshot 2: Add Task dialog
    ```sh
    node server.js
 
+
+## API Endpoints
+
+### Retrieve Tasks
+
+- **GET `/tasks`**
+  - **Description:** Retrieves a list of all tasks.
+  - **Parameters:** None
+  - **Returns:** An array of task objects.
+
+- **GET `/tasks/:id`**
+  - **Description:** Retrieves a specific task by its unique ID.
+  - **Parameters:**
+    - `id` (string): The ID of the task to retrieve.
+  - **Returns:** The task object corresponding to the provided ID.
+
+### Manage Tasks
+
+- **POST `/tasks`**
+  - **Description:** Creates a new task.
+  - **Request Body:** JSON object containing task details (e.g., `title`, `description`).
+  - **Returns:** The created task object with assigned ID.
+
+- **PUT `/tasks/:id`**
+  - **Description:** Updates an existing task identified by its ID.
+  - **Parameters:**
+    - `id` (string): The ID of the task to update.
+  - **Request Body:** JSON object containing updated task details.
+  - **Returns:** The updated task object.
+
+- **DELETE `/tasks/:id`**
+  - **Description:** Deletes a task specified by its ID.
+  - **Parameters:**
+    - `id` (string): The ID of the task to delete.
+  - **Returns:** Success message indicating the task deletion.
+
+Each endpoint is designed to facilitate CRUD operations (Create, Read, Update, Delete) on tasks via  backend API. The placeholders have to be replaced with API URL with actual implementation details where applicable.
 
 
 

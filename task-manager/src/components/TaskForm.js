@@ -4,7 +4,7 @@ const TaskForm = ({ addTask, updateTask, isEditing, currentTask }) => {
   const [title, setTitle] = useState(''); // State to store the title of the task
   const [description, setDescription] = useState(''); // State to store the description of the task
   const [completed, setCompleted] = useState(false); // State to track if the task is completed (boolean)
-
+  const [errors, setErrors] = useState({}); // State to store validation errors
 
   useEffect(() => {
     if (isEditing && currentTask) {
@@ -18,17 +18,34 @@ const TaskForm = ({ addTask, updateTask, isEditing, currentTask }) => {
     }
   }, [isEditing, currentTask]);
 
+  const validateForm = () => {
+    const errors = {};
+    if (!title.trim()) {
+      errors.title = 'Title is required';
+    }
+    if (!description.trim()) {
+      errors.description = 'Description is required';
+    }
+    return errors;
+  };
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const task = { title, description, completed };
-    if (isEditing) {
-      updateTask({ ...task, _id: currentTask._id });
+    const errors = validateForm();
+    if (Object.keys(errors).length === 0) {
+      const task = { title, description, completed };
+      if (isEditing) {
+        updateTask({ ...task, _id: currentTask._id });
+      } else {
+        addTask(task);
+      }
+      setTitle('');
+      setDescription('');
+      setCompleted(false);
     } else {
-      addTask(task);
+      setErrors(errors);
     }
-    setTitle('');
-    setDescription('');
-    setCompleted(false);
   };
 
   return (
@@ -46,6 +63,7 @@ const TaskForm = ({ addTask, updateTask, isEditing, currentTask }) => {
           required
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         />
+        {errors.title && <p className="text-red-500 text-xs italic">{errors.title}</p>}
       </div>
       <div className="mb-4">
         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="description">
@@ -59,6 +77,7 @@ const TaskForm = ({ addTask, updateTask, isEditing, currentTask }) => {
           required
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         />
+        {errors.description && <p className="text-red-500 text-xs italic">{errors.description}</p>}
       </div>
       <div className="mb-4">
         <label className="block text-gray-700 text-sm font-bold mb-2">
