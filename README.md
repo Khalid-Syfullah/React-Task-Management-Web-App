@@ -1,4 +1,4 @@
-# React Task Management Web App
+# Task Manager: React Task Management Web App
 
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
@@ -14,8 +14,8 @@
     <li><a href="#description">Description</a></li>
     <li><a href="#features">Features</a></li>
     <li><a href="#screenshots">Screenshots</a></li>
-    <li><a href="react-front-end-installation">Front-end Installation</a></li>
-    <li><a href="nodejs-back-end-installation">Back-end Installation</a></li>
+    <li><a href="#react-front-end-installation">Front-end Installation</a></li>
+    <li><a href="#nodejs-back-end-installation">Back-end Installation</a></li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
@@ -27,7 +27,13 @@
 
 
 ## Description
-This project is a task management web application built using React.js for the front end. It allows users to manage tasks, including adding, editing, and deleting tasks via a RESTful API backend.
+
+<p align="center">
+    Task Manager: A task management web application built using React.js for the front end. It allows users to manage tasks, including adding, editing, and deleting tasks via a RESTful API backend.
+    <br />
+    <a href="https://vercel.com/khalid-syfullahs-projects/task-manager/5kPJ9vRvKyN2C7jk7hRCDVVvHCYG"><strong>Open Vercel Live App Demo</strong></a>
+    <br />
+</p>
 
 ## Features
 - View a list of current tasks.
