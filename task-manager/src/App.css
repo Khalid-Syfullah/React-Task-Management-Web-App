@@ -1,7 +1,11 @@
+/* App.css */
+
+/* Center align everything within .App */
 .App {
   text-align: center;
 }
 
+/* Logo animation for reduced motion preference */
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -13,21 +17,31 @@
   }
 }
 
+/* Header styling */
 .App-header {
-  background-color: #282c34;
+  background-color: #2b6cb0; /* Customized header color */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(12px + 2vmin); /* Slightly increased font size */
   color: white;
+  padding: 20px; /* Add padding to the header */
 }
 
+/* Link styling */
 .App-link {
-  color: #61dafb;
+  color: #3182ce; /* Link color */
+  text-decoration: none; /* Remove default underline */
+  transition: color 0.3s ease; /* Smooth color transition on hover */
 }
 
+.App-link:hover {
+  color: #2c5282; /* Darker color on hover */
+}
+
+/* Keyframes for logo spin animation */
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

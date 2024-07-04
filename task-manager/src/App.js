@@ -1,11 +1,20 @@
-import logo from './logo.svg';
+import React from 'react';
+import TaskList from './components/TaskList';
+// import logo from './logo.svg';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+
+
+        <TaskList />
+
+                {/* <h1>React Task Manager</h1> */}
+
+
+        {/* <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
@@ -19,9 +28,13 @@ function App() {
         </a>
         <h1 className="text-3xl font-bold underline">
         Hello world!
-        </h1>
+        </h1> */}
         
       </header>
+
+
+
+      
     </div>
   );
 }
