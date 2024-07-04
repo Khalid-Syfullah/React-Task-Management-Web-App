@@ -31,7 +31,7 @@
 <p align="center">
     Task Manager: A task management web application built using React.js for the front end. It allows users to manage tasks, including adding, editing, and deleting tasks via a RESTful API backend.
     <br />
-    <a href="https://vercel.com/khalid-syfullahs-projects/task-manager/5kPJ9vRvKyN2C7jk7hRCDVVvHCYG"><strong>Open Vercel Live App Demo</strong></a>
+    <a href="https://task-manager-e825j7k9u-khalid-syfullahs-projects.vercel.app"><strong>Open Vercel Live App Demo</strong></a>
     <br />
 </p>
 
