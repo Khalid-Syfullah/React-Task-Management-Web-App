@@ -132,16 +132,14 @@ See the [open issues](https://github.com/khalid-syfullah/react-task-management-w
 <!-- LICENSE -->
 ## License
 
-Distributed under the MIT License. See `LICENSE` for more information.
-
+Distributed under the MIT License. 
 
 
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@khalid_syfullah](https://twitter.com/khalid_syfullah) - khalidsyfullah@gmail.com
-
-Project Link: [https://github.com/khalid-syfullah/boimela](https://github.com/khalid-syfullah/react-task-management-web-app-assignment)
+Md Khalid Syfullah - [@khalid_syfullah](https://twitter.com/khalid_syfullah) - khalidsyfullah@gmail.com
+Project Link: [https://github.com/khalid-syfullah/react-task-management-web-app-assignment](https://github.com/khalid-syfullah/react-task-management-web-app-assignment)
 
 
 
