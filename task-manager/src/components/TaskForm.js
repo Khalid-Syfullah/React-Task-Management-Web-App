@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
 const TaskForm = ({ addTask, updateTask, isEditing, currentTask }) => {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [completed, setCompleted] = useState(false);
+  const [title, setTitle] = useState(''); // State to store the title of the task
+  const [description, setDescription] = useState(''); // State to store the description of the task
+  const [completed, setCompleted] = useState(false); // State to track if the task is completed (boolean)
+
 
   useEffect(() => {
     if (isEditing && currentTask) {

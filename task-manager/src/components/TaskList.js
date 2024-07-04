@@ -3,48 +3,70 @@ import TaskItem from './TaskItem';
 import TaskForm from './TaskForm';
 import axios from 'axios';
 import './styles.css';
+import { API_URL } from '../config';
 
 const TaskList = () => {
-  const [tasks, setTasks] = useState([]);
-  const [isAddingTask, setIsAddingTask] = useState(false);
-  const [isEditing, setIsEditing] = useState(false);
-  const [currentTask, setCurrentTask] = useState(null);
-  const [serverMessage, setServerMessage] = useState(null);
-  const [isAddTaskDisabled, setIsAddTaskDisabled] = useState(false); // State to disable Add Task button
+  
+  const [tasks, setTasks] = useState([]); // State to store the list of tasks fetched from the server
+  const [isAddingTask, setIsAddingTask] = useState(false); // State to manage the visibility of the add/edit task dialog
+  const [isEditing, setIsEditing] = useState(false); // State to track if the user is currently editing a task
+  const [currentTask, setCurrentTask] = useState(null); // State to store the details of the task being edited
+  const [serverMessage, setServerMessage] = useState(null); // State to display messages from the server (e.g., success or error messages)
+  const [isAddTaskDisabled, setIsAddTaskDisabled] = useState(false); // State to disable the Add Task button during API calls
+  const [isLoading, setIsLoading] = useState(false); // State to indicate when API calls are in progress (loading indicator)
 
   useEffect(() => {
     fetchTasks();
   }, []);
 
   const fetchTasks = () => {
-    axios.get('http://localhost:5000/tasks')
-      .then(response => setTasks(response.data))
-      .catch(error => console.error(error));
+    setIsLoading(true); // Set loading state to true
+    axios.get(API_URL + '/tasks')
+      .then(response => {
+        setTasks(response.data);
+      })
+      .catch(error => {
+        console.error(error);
+        setServerMessage({ status: 'error', message: 'Failed to fetch tasks from server.' });
+        setTimeout(() => {
+          setServerMessage(null);
+        }, 3000);
+      })
+      .finally(() => {
+        setIsLoading(false); // Set loading state to false after API call completes
+      });
   };
 
   const addTask = (task) => {
     setIsAddTaskDisabled(true); // Disable Add Task button during API call
-    axios.post('http://localhost:5000/tasks', task)
+    setIsLoading(true); // Set loading state to true
+    axios.post(API_URL + '/tasks', task)
       .then(response => {
         setTasks([...tasks, response.data]);
         setIsAddingTask(false); // Close dialog after adding task
         setServerMessage({ status: 'success', message: 'Task added successfully.' });
         setTimeout(() => {
           setServerMessage(null);
-        }, 3000); // Clear message after 3 seconds
+        }, 3000);
       })
       .catch(error => {
         console.error(error);
+        setIsAddingTask(false);
         setServerMessage({ status: 'error', message: 'Failed to add task.' });
+        setTimeout(() => {
+          setServerMessage(null);
+        }, 3000);
       })
       .finally(() => {
-        setIsAddTaskDisabled(false); // Re-enable Add Task button after API call completes
+        setIsAddTaskDisabled(false);
+        setIsLoading(false); // Set loading state to false after API call completes
       });
   };
 
   const updateTask = (task) => {
     setIsAddTaskDisabled(true); // Disable Add Task button during API call
-    axios.put(`http://localhost:5000/tasks/${task._id}`, task)
+    setIsLoading(true); // Set loading state to true
+    axios.put(API_URL + `/tasks/${task._id}`, task)
       .then(response => {
         const updatedTasks = tasks.map(t => t._id === task._id ? response.data : t);
         setTasks(updatedTasks);
@@ -54,33 +76,43 @@ const TaskList = () => {
         setServerMessage({ status: 'success', message: 'Task updated successfully.' });
         setTimeout(() => {
           setServerMessage(null);
-        }, 3000); // Clear message after 3 seconds
+        }, 3000);
       })
       .catch(error => {
         console.error(error);
+        setIsAddingTask(false);
         setServerMessage({ status: 'error', message: 'Failed to update task.' });
+        setTimeout(() => {
+          setServerMessage(null);
+        }, 3000);
       })
       .finally(() => {
-        setIsAddTaskDisabled(false); // Re-enable Add Task button after API call completes
+        setIsAddTaskDisabled(false);
+        setIsLoading(false); // Set loading state to false after API call completes
       });
   };
 
   const deleteTask = (id) => {
-    setIsAddTaskDisabled(true); // Disable Add Task button during API call
-    axios.delete(`http://localhost:5000/tasks/${id}`)
+    setIsAddTaskDisabled(true);
+    setIsLoading(true); // Set loading state to true
+    axios.delete(API_URL + `/tasks/${id}`)
       .then(() => {
         setTasks(tasks.filter(task => task._id !== id));
         setServerMessage({ status: 'success', message: 'Task deleted successfully.' });
         setTimeout(() => {
           setServerMessage(null);
-        }, 3000); // Clear message after 3 seconds
+        }, 3000);
       })
       .catch(error => {
         console.error(error);
         setServerMessage({ status: 'error', message: 'Failed to delete task.' });
+        setTimeout(() => {
+          setServerMessage(null);
+        }, 3000);
       })
       .finally(() => {
-        setIsAddTaskDisabled(false); // Re-enable Add Task button after API call completes
+        setIsAddTaskDisabled(false);
+        setIsLoading(false); // Set loading state to false after API call completes
       });
   };
 
@@ -128,7 +160,11 @@ const TaskList = () => {
       {/* Current Task List */}
       <h2 className="text-xl font-semibold mb-4">Current Tasks</h2>
       <div className="grid gap-4">
-        {tasks.length === 0 ? (
+        {isLoading ? ( // Render loading indicator while loading
+          <div className="bg-white text-black rounded-lg shadow-md p-4 text-center">
+            <p>Loading...</p>
+          </div>
+        ) : tasks.length === 0 ? (
           <div className="bg-white rounded-lg shadow-md p-4 text-center text-gray-500">
             <p className="text-lg font-semibold">No tasks available.</p>
           </div>
