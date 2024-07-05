@@ -18,6 +18,7 @@ const TaskForm = ({ addTask, updateTask, isEditing, currentTask }) => {
     }
   }, [isEditing, currentTask]);
 
+  // Form Validation
   const validateForm = () => {
     const errors = {};
     if (!title.trim()) {
