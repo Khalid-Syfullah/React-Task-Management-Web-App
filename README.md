@@ -14,10 +14,10 @@
     <li><a href="#description">Description</a></li>
     <li><a href="#features">Features</a></li>
     <li><a href="#screenshots">Screenshots</a></li>
-    <li><a href="#react-front-end-installation">Front-end Installation</a></li>
-    <li><a href="#nodejs-back-end-installation">Back-end Installation</a></li>
+    <li><a href="#project-structure">Project Structure</a></li>
+    <li><a href="#react-frontend-installation">Front-end Installation</a></li>
+    <li><a href="#nodejs-backend-installation">Back-end Installation</a></li>
     <li><a href="#api-endpoints">API Endpoints</a></li>
-    <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
@@ -65,8 +65,45 @@ Screenshot 2: Add Task dialog
 
 ![Add Task](screenshots/add-task.png)
 
+## Project Structure
 
-## React Front-end Installation
+<div class="folder-structure">
+    <p>📦 React-Task-Management-Web-App<br>
+    ┣ 📂 task-manager<br>
+    ┃ ┣ 📂 public<br>
+    ┃ ┃ ┣ 📜 index.html<br>
+    ┃ ┗ 📂 src<br>
+    ┃   ┣ 📂 components<br>
+    ┃   ┃ ┣ 📜 TaskItem.js<br>
+    ┃   ┃ ┣ 📜 TaskList.js<br>
+    ┃   ┃ ┗ 📜 TaskForm.js<br>
+    ┃   ┃ ┗ 📜 styles.css<br>
+    ┃   ┣ 📂 features<br>
+    ┃   ┃ ┗ 📜 tasksSlice.js<br>
+    ┃   ┣ 📂 store<br>
+    ┃   ┃ ┗ 📜 index.js<br>
+    ┃   ┣ 📜 App.js<br>
+    ┃   ┣ 📜 config.js<br>
+    ┃   ┣ 📜 App.css<br>
+    ┃   ┣ 📜 index.js<br>
+    ┃   ┗ 📜 setupTests.js<br>
+    ┃ ┣ 📜 .env<br>
+    ┃ ┣ 📜 package.json<br>
+    ┣ 📂 backend<br>
+    ┃ ┣ 📂 models<br>
+    ┃ ┃ ┗ 📜 Task.js<br>
+    ┃ ┣ 📂 routes<br>
+    ┃ ┃ ┗ 📜 taskRoutes.js<br>
+    ┃ ┣ 📂 controllers<br>
+    ┃ ┃ ┗ 📜 taskController.js<br>
+    ┃ ┣ 📜 server.js<br>
+    ┃ ┗ 📜 .env<br>
+    ┃ ┗ 📜 package.json<br>
+    ┗ 📜 README.md</p>
+</div>
+
+
+## React Frontend Installation
 
 1. Clone the repo
    ```sh
@@ -85,8 +122,10 @@ Screenshot 2: Add Task dialog
    ```sh
    npm run
 
+   
 
-## React Back-end Installation
+
+## Node.js Backend Installation
 
 1. Clone the repo
    ```sh
