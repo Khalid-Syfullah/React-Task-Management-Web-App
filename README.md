@@ -70,7 +70,7 @@ Screenshot 2: Add Task dialog
 
 1. Clone the repo
    ```sh
-   git clone [https://github.com/Khalid-Syfullah/React-Task-Management-Web-App-Assignment.git](https://github.com/Khalid-Syfullah/React-Task-Management-Web-App-Assignment.git)
+   git clone https://github.com/Khalid-Syfullah/React-Task-Management-Web-App-Assignment.git
 
 
 2. Change directory to task manager React front-end
@@ -90,7 +90,7 @@ Screenshot 2: Add Task dialog
 
 1. Clone the repo
    ```sh
-   git clone [https://github.com/Khalid-Syfullah/React-Task-Management-Web-App-Assignment.git](https://github.com/Khalid-Syfullah/React-Task-Management-Web-App-Assignment.git)
+   git clone https://github.com/Khalid-Syfullah/React-Task-Management-Web-App-Assignment.git
 
 
 2. Change directory to task manager Node.js back-end
