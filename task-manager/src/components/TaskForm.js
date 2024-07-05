@@ -1,51 +1,53 @@
 import React, { useState, useEffect } from 'react';
 
 const TaskForm = ({ addTask, updateTask, isEditing, currentTask }) => {
+  // State variables to manage form input and state
   const [title, setTitle] = useState(''); // State to store the title of the task
   const [description, setDescription] = useState(''); // State to store the description of the task
   const [completed, setCompleted] = useState(false); // State to track if the task is completed (boolean)
   const [errors, setErrors] = useState({}); // State to store validation errors
 
+  // Effect to update form fields when editing a task
   useEffect(() => {
     if (isEditing && currentTask) {
-      setTitle(currentTask.title || '');
-      setDescription(currentTask.description || '');
-      setCompleted(currentTask.completed || false);
+      setTitle(currentTask.title || ''); // Set title if editing and currentTask exists
+      setDescription(currentTask.description || ''); // Set description if editing and currentTask exists
+      setCompleted(currentTask.completed || false); // Set completed status if editing and currentTask exists
     } else {
-      setTitle('');
-      setDescription('');
-      setCompleted(false);
+      setTitle(''); // Reset title when not editing
+      setDescription(''); // Reset description when not editing
+      setCompleted(false); // Reset completed status when not editing
     }
-  }, [isEditing, currentTask]);
+  }, [isEditing, currentTask]); // Dependencies for useEffect
 
-  // Form Validation
+  // Form Validation function
   const validateForm = () => {
     const errors = {};
     if (!title.trim()) {
-      errors.title = 'Title is required';
+      errors.title = 'Title is required'; // Error message if title is empty
     }
     if (!description.trim()) {
-      errors.description = 'Description is required';
+      errors.description = 'Description is required'; // Error message if description is empty
     }
     return errors;
   };
 
-
+  // Handle form submission
   const handleSubmit = (e) => {
-    e.preventDefault();
-    const errors = validateForm();
-    if (Object.keys(errors).length === 0) {
-      const task = { title, description, completed };
+    e.preventDefault(); // Prevent default form submission behavior
+    const errors = validateForm(); // Validate form fields
+    if (Object.keys(errors).length === 0) { // Check if there are no validation errors
+      const task = { title, description, completed }; // Create task object from form data
       if (isEditing) {
-        updateTask({ ...task, _id: currentTask._id });
+        updateTask({ ...task, _id: currentTask._id }); // Update existing task if editing
       } else {
-        addTask(task);
+        addTask(task); // Add new task if not editing
       }
-      setTitle('');
-      setDescription('');
-      setCompleted(false);
+      setTitle(''); // Clear title input field after submission
+      setDescription(''); // Clear description input field after submission
+      setCompleted(false); // Reset completed status after submission
     } else {
-      setErrors(errors);
+      setErrors(errors); // Set validation errors to display error messages
     }
   };
 

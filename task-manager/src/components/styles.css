@@ -1,26 +1,35 @@
-@keyframes fadeIn {
+/* Define the keyframes for the fadeIn animation. 
+   This animation will transition an element from fully transparent (opacity: 0) to fully opaque (opacity: 1). */
+   @keyframes fadeIn {
     0% {
-      opacity: 0;
+      opacity: 0; /* Start with the element being fully transparent */
     }
     100% {
-      opacity: 1;
+      opacity: 1; /* End with the element being fully opaque */
     }
   }
   
+  /* Define the keyframes for the fadeOut animation.
+     This animation will transition an element from fully opaque (opacity: 1) to fully transparent (opacity: 0).
+     Additionally, it keeps the element visible at the end of the animation (visibility: visible). */
   @keyframes fadeOut {
     0% {
-      opacity: 1;
+      opacity: 1; /* Start with the element being fully opaque */
     }
     100% {
-      opacity: 0;
-      visibility: visible;
+      opacity: 0; /* End with the element being fully transparent */
+      visibility: visible; /* Maintain visibility even though it's transparent */
     }
   }
   
+  /* Apply the fadeIn animation to elements with the animate-fadeIn class.
+     The animation will last for 0.3 seconds and will ease out gradually. */
   .animate-fadeIn {
     animation: fadeIn 0.3s ease-out;
   }
   
+  /* Apply the fadeOut animation to elements with the animate-fadeOut class.
+     The animation will last for 0.3 seconds and will ease out gradually. */
   .animate-fadeOut {
     animation: fadeOut 0.3s ease-out;
   }
